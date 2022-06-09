@@ -3,26 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <title>Jogo da Cobra</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/jogo.css" />
 
     <link
       rel="shortcut icon"
       href="./assets/cobrinhaFavicon.png"
       type="image/x-icon"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <!-- <img src="./assets/backgroundImage.jpg" alt="" id="lamp" /> -->
-    <img src="./assets/backgroundImage.png" alt="" id="lamp" />
+    <img src="./assets/backgroundImage.png" alt="" id="mapa" />
     <div class="content">
-      <canvas id="tela" width="500" height="500"></canvas>
-      <input
+      <canvas id="tela" width="500" height="420"></canvas>
+      <!-- <input
         type="button"
         value="Jogar novamente"
         onClick="window.location.reload()"
-      />
-      <script src="cobra.js"></script>
+      /> -->
+      <div class="pontos">
+        <h3>Pontos:</h3>
+        <span id="pontos">0</span>
+      </div>
     </div>
+    <script src="cobra.js"></script>
   </body>
 </html>
