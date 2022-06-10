@@ -12,6 +12,10 @@ var cabeca
 var maca
 var corpo
 
+var monstrarPontos = document.getElementById('pontos')
+
+var contadorPontos = 0
+
 var pontos
 var maca_x
 var maca_y
@@ -21,19 +25,19 @@ var paraDireita = true
 var paraCima = false
 var paraBaixo = false
 var noJogo = true
+var nivelFacil = 10
+var nivelIntermediario = 25
+var nivelDificl = 45
+var nivelSangueNoOlho = 60
+
+var atraso = 140 // tornar o jogo lento
 
 const TAMANHO_PONTO = 10
-const ALEATORIO_MAXIMO = 29 // Limitador de ponto de coleta aleatório
-const ATRASO = 140 // tornar o jogo lento
-const C_ALTURA = 400 // Altura do da tela jogavel
-const C_LARGURA = 400 // Largura da tela jogavel
+const ALEATORIO_MAXIMO = 40 // Limitador de ponto de coleta aleatório
+const C_ALTURA = 500 // Altura do da tela jogavel
+const C_LARGURA = 500 // Largura da tela jogavel
 
-const TECLA_ESQUERDA = 37 // Valor da tecla ASCII da esquerda
-const TECLA_DIREITA = 39 // Valor da tecla ASCII da direita
-const TECLA_ACIMA = 38 // Valor da tecla ASCII cima
-const TECLA_ABAIXO = 40 // Valor da tecla ASCII baixo
-
-const teclas = [37, 39, 38, 40]
+const teclas = [37, 38, 39, 40, 65, 68, 83, 87]
 
 var x = []
 var y = []
@@ -48,8 +52,7 @@ function iniciar() {
   tela = document.getElementById('tela')
   ctx = tela.getContext('2d')
 
-  // ctx.fillStyle = 'black'
-  let img = document.getElementById('lamp')
+  let img = document.getElementById('mapa')
   let backgroundImage = ctx.createPattern(img, 'repeat')
 
   ctx.fillRect(0, 0, C_LARGURA, C_ALTURA)
@@ -58,7 +61,7 @@ function iniciar() {
   carregarImagens()
   criarCobra()
   localizarMaca()
-  setTimeout('cicloDeJogo()', ATRASO)
+  setTimeout('cicloDeJogo()', 500)
 }
 
 function carregarImagens() {
@@ -101,20 +104,39 @@ function cicloDeJogo() {
     verificarColisao()
     mover()
     fazerDesenho()
-    setTimeout('cicloDeJogo()', ATRASO)
+    setTimeout('cicloDeJogo()', atraso)
   }
 }
 
 function verificarMaca() {
   if (x[0] == maca_x && y[0] == maca_y) {
+    contadorPontos++
+
+    monstrarPontos.innerHTML = contadorPontos
     pontos++
+    verificarNivel()
     localizarMaca()
+  }
+}
+
+function verificarNivel() {
+  if (contadorPontos == nivelFacil) {
+    console.log('bola')
+    atraso -= 20
+  } else if (contadorPontos == nivelIntermediario) {
+    console.log('nivel inter')
+    atraso -= 40
+  } else if (contadorPontos == nivelDificl) {
+    console.log('nivel dificil')
+    atraso -= 35
+  } else if (contadorPontos == nivelSangueNoOlho) {
+    atraso -= 50
   }
 }
 
 function verificarColisao() {
   for (var z = pontos; z > 0; z--) {
-    if (z > 4 && x[0] == x[z] && y[0] == y[z]) {
+    if (z > 3 && x[0] == x[z] && y[0] == y[z]) {
       noJogo = false
     }
   }
@@ -189,25 +211,37 @@ function fimDeJogo() {
 function verificarTecla(e) {
   var tecla = e.keyCode
 
-  if (tecla == teclas.find((key) => key == 37) && !paraDireita) {
+  if (
+    tecla == teclas.find((key) => key == 37) ||
+    (tecla == teclas.find((key) => key == 65) && !paraDireita)
+  ) {
     paraEsquerda = true
     paraCima = false
     paraBaixo = false
   }
 
-  if (tecla == teclas.find((key) => 39 == key) && !paraEsquerda) {
+  if (
+    tecla == teclas.find((key) => key == 39) ||
+    (tecla == teclas.find((key) => key == 68) && !paraEsquerda)
+  ) {
     paraDireita = true
     paraCima = false
     paraBaixo = false
   }
 
-  if (tecla == teclas.find((key) => 38 == key) && !paraBaixo) {
+  if (
+    tecla == teclas.find((key) => key == 38) ||
+    (tecla == teclas.find((key) => key == 87) && !paraBaixo)
+  ) {
     paraCima = true
     paraDireita = false
     paraEsquerda = false
   }
 
-  if (tecla == teclas.find((key) => 40 == key) && !paraCima) {
+  if (
+    tecla == teclas.find((key) => key == 40) ||
+    (tecla == teclas.find((key) => key == 83) && !paraCima)
+  ) {
     paraBaixo = true
     paraDireita = false
     paraEsquerda = false

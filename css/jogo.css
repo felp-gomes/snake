@@ -4,6 +4,8 @@ body {
   justify-content: center;
   height: 100vh;
   background-color: black;
+  color: white;
+  font-family: 'Press Start 2P';
 }
 
 img {
@@ -13,4 +15,14 @@ img {
 .content {
   display: flex;
   align-items: center;
+  flex-direction: column;
+}
+
+.content .pontos {
+  display: flex;
+  align-items: center;
+}
+
+.content .pontos h3 {
+  margin-right: 10px;
 }
