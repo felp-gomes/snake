@@ -8,48 +8,40 @@ body {
   background-color: #53b568;
 }
 
-.content {
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.regras {
-  text-align: center;
-  font-family: 'Press Start 2P';
-}
-
-.teste {
-  background: white;
-  padding: 1rem;
-  width: 20rem;
-  height: 12rem;
-  border-radius: 1rem;
-}
-
-.teste {
-  text-align: center;
-}
-
-.title {
-  font-size: 1rem;
-}
-
-img {
-  width: 15rem;
-  height: 15rem;
-}
-
-.header {
-  margin-top: 1rem;
+header {
+  margin-top: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
   padding-left: 1rem;
   flex-wrap: wrap;
+}
+
+.title-initial {
+  text-align: center;
+  font-family: 'Press Start 2P';
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.group-card {
+  background: white;
+  padding: 1rem;
+  width: 20rem;
+  height: 12rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.title-rules {
+  font-size: 1rem;
 }
 
 .group-text {
@@ -62,6 +54,11 @@ img {
   width: 5rem;
   height: 5rem;
   margin-top: 1rem;
+}
+
+img {
+  width: 15rem;
+  height: 15rem;
 }
 
 button {
