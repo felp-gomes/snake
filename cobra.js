@@ -27,14 +27,15 @@ var paraBaixo = false
 var noJogo = true
 var nivelFacil = 10
 var nivelIntermediario = 25
-var nivelDificl = 45
-var nivelSangueNoOlho = 60
+var nivelDificil = 45
+var nivelDiamante = 60
+var ganhar = 80
 
 var atraso = 140 // tornar o jogo lento
 
 const TAMANHO_PONTO = 10
 const ALEATORIO_MAXIMO = 40 // Limitador de ponto de coleta aleatório
-const C_ALTURA = 500 // Altura do da tela jogavel
+const C_ALTURA = 420 // Altura do da tela jogavel
 const C_LARGURA = 500 // Largura da tela jogavel
 
 const teclas = [37, 38, 39, 40, 65, 68, 83, 87]
@@ -47,21 +48,30 @@ onkeydown = verificarTecla // Define função chamada ao se pressionar uma tecla
 iniciar() // Chama função inicial do jogo
 
 // Definição das funções
+var emGame
 
 function iniciar() {
   tela = document.getElementById('tela')
   ctx = tela.getContext('2d')
 
-  let img = document.getElementById('mapa')
-  let backgroundImage = ctx.createPattern(img, 'repeat')
+  backgroundTema('mapaGrama')
 
   ctx.fillRect(0, 0, C_LARGURA, C_ALTURA)
-  ctx.fillStyle = backgroundImage
+  emGame = new Audio('audios/emGame.mp4')
+  emGame.play()
+  emGame.volume = 0.2
+  emGameloop = true
 
   carregarImagens()
   criarCobra()
   localizarMaca()
   setTimeout('cicloDeJogo()', 500)
+}
+
+function backgroundTema(tema) {
+  let img = document.getElementById(tema)
+  let backgroundImage = ctx.createPattern(img, 'repeat')
+  ctx.fillStyle = backgroundImage
 }
 
 function carregarImagens() {
@@ -72,11 +82,11 @@ function carregarImagens() {
   corpo.src = './assets/ponto.png'
 
   maca = new Image()
-  maca.src = './assets/maca.png'
+  maca.src = './assets/macaDiamante.png'
 }
 
 function criarCobra() {
-  pontos = 3
+  pontos = 2
 
   for (var z = 0; z < pontos; z++) {
     x[z] = 50 - z * TAMANHO_PONTO
@@ -88,6 +98,7 @@ function semScrollBars() {
   document.documentElement.style.overflow = 'hidden'
   document.body.scroll = 'no' // IE
 }
+
 semScrollBars()
 
 function localizarMaca() {
@@ -105,14 +116,19 @@ function cicloDeJogo() {
     mover()
     fazerDesenho()
     setTimeout('cicloDeJogo()', atraso)
+  } else {
+    emGame.pause()
   }
 }
 
 function verificarMaca() {
   if (x[0] == maca_x && y[0] == maca_y) {
     contadorPontos++
-
     monstrarPontos.innerHTML = contadorPontos
+
+    const musica = new Audio('audios/comer.wav')
+    musica.play()
+
     pontos++
     verificarNivel()
     localizarMaca()
@@ -121,39 +137,62 @@ function verificarMaca() {
 
 function verificarNivel() {
   if (contadorPontos == nivelFacil) {
-    console.log('bola')
-    atraso -= 20
+    const musica = new Audio('audios/nivelCompletado.wav')
+    musica.play()
+    backgroundTema('mapaTerra')
+    atraso -= 5
   } else if (contadorPontos == nivelIntermediario) {
-    console.log('nivel inter')
-    atraso -= 40
-  } else if (contadorPontos == nivelDificl) {
-    console.log('nivel dificil')
-    atraso -= 35
-  } else if (contadorPontos == nivelSangueNoOlho) {
-    atraso -= 50
+    const musica = new Audio('audios/nivelCompletado.wav')
+    musica.play()
+    backgroundTema('mapaAgua')
+    atraso -= 5
+  } else if (contadorPontos == nivelDificil) {
+    const musica = new Audio('audios/nivelCompletado.wav')
+    musica.play()
+    backgroundTema('mapaEspaco')
+    atraso -= 5
+  } else if (contadorPontos == nivelDiamante) {
+    const musica = new Audio('audios/nivelCompletado.wav')
+    musica.play()
+    backgroundTema('mapaDiamante')
+    atraso -= 5
+  } else if (contadorPontos >= ganhar) {
+    const music = new Audio('audios/ganhar.wav')
+    music.play()
+    noJogo = false
   }
 }
 
 function verificarColisao() {
   for (var z = pontos; z > 0; z--) {
     if (z > 3 && x[0] == x[z] && y[0] == y[z]) {
+      const musica = new Audio('audios/colicao.wav')
+      musica.play()
       noJogo = false
     }
   }
 
   if (y[0] >= C_ALTURA) {
+    const musica = new Audio('audios/colicao.wav')
+    musica.play()
     noJogo = false
   }
 
   if (y[0] < 0) {
+    const musica = new Audio('audios/colicao.wav')
+    musica.play()
     noJogo = false
   }
 
   if (x[0] >= C_LARGURA) {
+    const musica = new Audio('audios/colicao.wav')
+    musica.play()
     noJogo = false
   }
 
   if (x[0] < 0) {
+    const musica = new Audio('audios/colicao.wav')
+    musica.play()
     noJogo = false
   }
 }
