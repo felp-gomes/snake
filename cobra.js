@@ -240,7 +240,7 @@ function fazerDesenho() {
 
 function fimDeJogo() {
   localStorage.setItem('pontos', contadorPontos)
-  window.location.href = '/derrota.html'
+  window.location.href = './derrota.html'
 }
 
 function verificarTecla(e) {
