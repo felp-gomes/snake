@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Vitória</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="stylesheet" href="./css/vitoria.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <img src="./assets/vitoria.png" alt="" />
+      <p class="frase-vitoria">Você ganhou, parabéns!</p>
+
+      <div id="ranking" class="ranking"></div>
+
+      <div class="group-name">
+        <h2>
+          Seus pontos foram:
+          <span id="pontuacao"></span>
+        </h2>
+        <p class="nome">Digite aqui seu nome com 3 caracteres:</p>
+        <div class="inputs">
+          <div>
+            <input
+              class="nome"
+              id="nome"
+              type="text"
+              placeholder="Digite aqui"
+            />
+            <input type="submit" id="enviar" value="Enviar" />
+          </div>
+          <button onclick="window.location.href='/cobra.html'">
+            Jogar novamente
+          </button>
+        </div>
+      </div>
+    </div>
+    <audio autoplay>
+      <source src="./audios/victory.mp3" type="audio/ogg" />
+    </audio>
+    <script src="painel.js"></script>
+  </body>
+</html>

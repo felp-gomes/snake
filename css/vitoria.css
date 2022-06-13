@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  background-color: black;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.frase-vitoria {
+  color: white;
+  font-family: 'Press Start 2P';
+}
+
+h2 {
+  color: white;
+}
+
+.nome {
+  color: white;
+}
+
+.group-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+img {
+  width: 50%;
+  height: 50%;
+  border-radius: 2rem;
+}
+
+input.nome {
+  outline: none;
+  color: black;
+  outline: none;
+  border: 1px solid #d0d5dd;
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+  width: 12rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+input#enviar {
+  padding: 0.4rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.4rem;
+}
+
+button {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  border: none;
+  width: 16rem;
+  border-radius: 0.5rem;
+  background: white;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.ranking {
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  background-color: #ececec;
+}
+
+.ranking p {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgb(173, 173, 173);
+}

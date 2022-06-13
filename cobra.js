@@ -25,11 +25,11 @@ var paraDireita = true
 var paraCima = false
 var paraBaixo = false
 var noJogo = true
-var nivelFacil = 10
-var nivelIntermediario = 25
-var nivelDificil = 45
-var nivelDiamante = 60
-var ganhar = 80
+var nivelFacil = 4
+var nivelIntermediario = 6
+var nivelDificil = 10
+var nivelDiamante = 12
+var ganhar = 2
 
 var atraso = 140 // tornar o jogo lento
 
@@ -160,6 +160,7 @@ function verificarNivel() {
     const music = new Audio('audios/ganhar.wav')
     music.play()
     noJogo = false
+    window.location.href = '/vitoria.html'
   }
 }
 
@@ -235,16 +236,13 @@ function fazerDesenho() {
       }
     }
   } else {
-    fimDeJogo()
+    setTimeout('fimDeJogo()', 1000)
   }
 }
 
 function fimDeJogo() {
-  ctx.fillStyle = 'black'
-  ctx.textBaseline = 'middle'
-  ctx.textAlign = 'center'
-  ctx.font = 'normal bold 20px serif'
-  ctx.fillText('Fim de Jogo', C_LARGURA / 2, C_ALTURA / 2)
+  localStorage.setItem('pontos', contadorPontos)
+  window.location.href = '/derrota.html'
 }
 
 function verificarTecla(e) {

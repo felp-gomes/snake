@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da Cobrinha</title>
+  </head>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/derrota.css" />
+  <body>
+    <div class="content">
+      <img src="./assets/derrota.png" alt="" />
+      <p class="frase-derrota">Não foi dessa vez, tente novamente!</p>
+
+      <div id="ranking" class="ranking"></div>
+
+      <div class="group-name">
+        <h2>
+          Seus pontos foram:
+          <span id="pontuacao"></span>
+        </h2>
+        <p class="nome">Digite aqui seu nome com 3 caracteres:</p>
+        <div class="inputs">
+          <div>
+            <input
+              class="nome"
+              id="nome"
+              type="text"
+              placeholder="Digite aqui"
+            />
+            <input type="submit" id="enviar" value="Enviar" />
+          </div>
+          <button onclick="window.location.href='/cobra.html'">
+            Jogar novamente
+          </button>
+        </div>
+      </div>
+    </div>
+    <audio autoplay>
+      <source src="./audios/defeat.mp4" type="audio/ogg" />
+    </audio>
+    <script src="painel.js"></script>
+  </body>
+</html>
