@@ -29,7 +29,7 @@ var nivelFacil = 4
 var nivelIntermediario = 6
 var nivelDificil = 10
 var nivelDiamante = 12
-var ganhar = 2
+var ganhar = 14
 
 var atraso = 140 // tornar o jogo lento
 
@@ -157,8 +157,6 @@ function verificarNivel() {
     backgroundTema('mapaDiamante')
     atraso -= 5
   } else if (contadorPontos >= ganhar) {
-    const music = new Audio('audios/ganhar.wav')
-    music.play()
     noJogo = false
     window.location.href = '/vitoria.html'
   }
